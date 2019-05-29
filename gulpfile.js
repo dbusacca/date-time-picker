@@ -6,8 +6,7 @@
     'use strict';
 
     let gulp = require('gulp'),
-        runSequence = require('run-sequence'),
-        clean = require('gulp-clean'),
+        del = require('del'),
         sass = require('gulp-sass'),
         postcss = require('gulp-postcss'),
         cleancss = require('gulp-clean-css'),
@@ -31,11 +30,13 @@
     const exec = require('child_process').exec;
 
     gulp.task('clean', function () {
-        return gulp.src(['./npmdist', config.tmpOutputPath], {read: false}).pipe(clean());
+        // return gulp.src(['./npmdist', config.tmpOutputPath], {read: false, allowEmpty: true}).pipe(clean());
+        return del(['./npmdist', config.tmpOutputPath]);
     });
 
     gulp.task('clean.dist', function () {
-        return gulp.src(['./dist'], {read: false}).pipe(clean());
+        // return gulp.src(['./dist'], {read: false, allowEmpty: true}).pipe(clean());
+        return del(['./dist']);
     });
 
     gulp.task('backup.ts.tmp', function () {
@@ -111,16 +112,16 @@
     });
 
     gulp.task('bundle', function (cb) {
-        var cmd = 'node_modules/.bin/rollup -c rollup.config.js dist/picker.js > tmp/picker.bundle.js';
+        var cmd = 'npx rollup -c rollup.config.js dist/picker.js > tmp/picker.bundle.js';
         return run_proc(cmd, cb);
     });
 
     gulp.task('delete.tmp', function () {
-        return gulp.src([config.tmpOutputPath], {read: false}).pipe(clean());
+        return del([config.tmpOutputPath]);
     });
 
     gulp.task('ngc', function (cb) {
-        let cmd = 'node_modules/.bin/ngc -p tsconfig-aot.json';
+        let cmd = 'npx ngc -p tsconfig-aot.json';
         return run_proc(cmd, cb);
     });
 
@@ -139,16 +140,15 @@
     gulp.task('copy.root.files.to.npmdist.dir', function() {
         return gulp.src(
             [
-                './index.ts',
-                './index.js',
+                //'./index.ts',
+                //'./index.js',
                 './LICENSE',
                 './package.json',
                 './README.md'
             ]).pipe(gulp.dest('./npmdist'));
     });
 
-    gulp.task('all', function (cb) {
-        runSequence(
+    gulp.task('all', gulp.series(
             'clean',
             'clean.dist',
             'backup.ts.tmp',
@@ -166,12 +166,11 @@
             'copy.dist.to.npmdist',
             'copy.root.files.to.npmdist.dir',
             'delete.tmp',
-            cb
         )
-    });
+    );
 
     const run_proc = function (cmd, callBack, options) {
-        var proc = exec(cmd, function (err, stdout, stderr) {
+        var proc = exec(cmd, {shell: false}, function (err, stdout, stderr) {
             if (options === undefined) options = {};
             if (options.outFilter !== undefined) stdout = options.outFilter(stdout);
             if (options.errFilter !== undefined) stderr = options.errFilter(stderr);

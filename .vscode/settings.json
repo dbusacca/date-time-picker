@@ -1,0 +1,7 @@
+{
+    "files.watcherExclude": {
+        "**/dist/**": true,
+        "**/npmdist/**": true,
+        "**/tmp/**": true
+    }
+}
