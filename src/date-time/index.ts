@@ -13,3 +13,5 @@ export {
 export { OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from './adapter/date-time-format.class';
 export { OwlDateTimeInlineComponent } from './date-time-inline.component';
 export { OwlDateTimeComponent } from './date-time-picker.component';
+
+export { OwlMomentDateTimeModule} from './adapter/moment-adapter/moment-date-time.module';
