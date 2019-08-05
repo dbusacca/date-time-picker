@@ -258,7 +258,7 @@ export class OwlMonthViewComponent<T> implements OnInit, AfterContentInit, OnDes
     @Output() readonly pickerMomentChange: EventEmitter<T> = new EventEmitter<T>();
 
     /** The body of calendar table */
-    @ViewChild(OwlCalendarBodyComponent, { static: false }) calendarBodyElm: OwlCalendarBodyComponent;
+    @ViewChild(OwlCalendarBodyComponent, { static: true }) calendarBodyElm: OwlCalendarBodyComponent;
 
     @HostBinding('class.owl-dt-calendar-view')
     get owlDTCalendarView(): boolean {

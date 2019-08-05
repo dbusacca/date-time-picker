@@ -1,6 +1,6 @@
 {
   "name": "@busacca/ng-pick-datetime",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Angular Date Time Picker",
   "keywords": [
     "Angular",
@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanielYKPan/date-time-picker.git"
+    "url": "https://github.com/dbusacca/date-time-picker.git"
   },
   "jsnext:main": "picker.js",
   "module": "picker.js",
