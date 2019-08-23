@@ -51,7 +51,7 @@ import { OwlDialogModule } from '../dialog';
         OwlDateTimeInlineComponent,
     ],
     providers: [
-        OwlDateTimeIntl,
+        // OwlDateTimeIntl,
         OWL_DTPICKER_SCROLL_STRATEGY_PROVIDER,
     ],
     entryComponents: [
