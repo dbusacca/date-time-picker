@@ -1,8 +1,8 @@
 Angular Date Time Picker
 ========================
 
-[![npm](https://img.shields.io/npm/v/ng-pick-datetime.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/ng-pick-datetime)
-[![npm](https://img.shields.io/npm/dm/ng-pick-datetime.svg)](https://www.npmjs.com/package/ng-pick-datetime)
+[![npm](https://img.shields.io/npm/v/ng-pick-datetime.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/@busacca/ng-pick-datetime)
+[![npm](https://img.shields.io/npm/dm/ng-pick-datetime.svg)](https://www.npmjs.com/package/@busacca/ng-pick-datetime)
 
 **Angular date time picker - Angular reusable UI component**
 **This package supports Angular 8+**
