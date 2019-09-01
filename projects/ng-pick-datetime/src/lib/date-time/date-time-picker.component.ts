@@ -35,13 +35,17 @@ import { OwlDateTimeInputDirective } from './date-time-picker-input.directive';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from './adapter/date-time-format.class';
 import { OwlDateTime, PickerMode, PickerType, SelectMode } from './date-time.class';
-import { OwlDialogRef, OwlDialogService } from '../dialog';
+import { OwlDialogRef } from '../dialog/dialog-ref.class';
+import { OwlDialogService } from '../dialog/dialog.service';
 import { merge, Subscription } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
+
+export type DefaultScrollStrategyType = () => ScrollStrategy;
+
 /** Injection token that determines the scroll handling while the dtPicker is open. */
 export const OWL_DTPICKER_SCROLL_STRATEGY =
-    new InjectionToken<() => ScrollStrategy>('owl-dtpicker-scroll-strategy');
+    new InjectionToken<DefaultScrollStrategyType>('owl-dtpicker-scroll-strategy');
 
 /** @docs-private */
 export function OWL_DTPICKER_SCROLL_STRATEGY_PROVIDER_FACTORY( overlay: Overlay ): () => BlockScrollStrategy {
@@ -55,6 +59,7 @@ export const OWL_DTPICKER_SCROLL_STRATEGY_PROVIDER = {
     useFactory: OWL_DTPICKER_SCROLL_STRATEGY_PROVIDER_FACTORY,
 };
 
+/** @dynamic */
 @Component({
     selector: 'owl-date-time',
     exportAs: 'owlDateTime',
@@ -281,7 +286,7 @@ export class OwlDateTimeComponent<T> extends OwlDateTime<T> implements OnInit, O
                  private ngZone: NgZone,
                  protected changeDetector: ChangeDetectorRef,
                  @Optional() protected dateTimeAdapter: DateTimeAdapter<T>,
-                 @Inject(OWL_DTPICKER_SCROLL_STRATEGY) private defaultScrollStrategy: () => ScrollStrategy,
+                 @Inject(OWL_DTPICKER_SCROLL_STRATEGY) private defaultScrollStrategy: DefaultScrollStrategyType,
                  @Optional() @Inject(OWL_DATE_TIME_FORMATS) protected dateTimeFormats: OwlDateTimeFormats,
                  @Optional() @Inject(DOCUMENT) private document: any ) {
         super(dateTimeAdapter, dateTimeFormats);

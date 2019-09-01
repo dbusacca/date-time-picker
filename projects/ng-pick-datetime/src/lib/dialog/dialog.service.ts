@@ -24,13 +24,14 @@ import { ComponentPortal, ComponentType, PortalInjector } from '@angular/cdk/por
 
 export const OWL_DIALOG_DATA = new InjectionToken<any>('OwlDialogData');
 
+export type DialogScrollStrategyType = () => ScrollStrategy;
 /**
  * Injection token that determines the scroll handling while the dialog is open.
  * */
 export const OWL_DIALOG_SCROLL_STRATEGY =
-    new InjectionToken<() => ScrollStrategy>('owl-dialog-scroll-strategy');
+    new InjectionToken<DialogScrollStrategyType>('owl-dialog-scroll-strategy');
 
-export function OWL_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY( overlay: Overlay ): () => ScrollStrategy {
+export function OWL_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY( overlay: Overlay ): DialogScrollStrategyType {
     return () => overlay.scrollStrategies.block();
 }
 
@@ -47,6 +48,7 @@ export const OWL_DIALOG_SCROLL_STRATEGY_PROVIDER = {
 export const OWL_DIALOG_DEFAULT_OPTIONS =
     new InjectionToken<OwlDialogConfig>('owl-dialog-default-options');
 
+/** @dynamic */
 @Injectable()
 export class OwlDialogService {
 
@@ -82,7 +84,7 @@ export class OwlDialogService {
     constructor( private overlay: Overlay,
                  private injector: Injector,
                  @Optional() private location: Location,
-                 @Inject(OWL_DIALOG_SCROLL_STRATEGY) private scrollStrategy: () => ScrollStrategy,
+                 @Inject(OWL_DIALOG_SCROLL_STRATEGY) private scrollStrategy: DialogScrollStrategyType,
                  @Optional() @Inject(OWL_DIALOG_DEFAULT_OPTIONS) private defaultOptions: OwlDialogConfig,
                  @Optional() @SkipSelf() private parentDialog: OwlDialogService,
                  private overlayContainer: OverlayContainer ) {
