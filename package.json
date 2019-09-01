@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "depoly": "npm publish ./dist/ng-pick-datetime"
+    "deploy": "npm publish ./dist/ng-pick-datetime"
   },
   "private": true,
   "dependencies": {
