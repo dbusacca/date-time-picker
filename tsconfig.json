@@ -19,10 +19,10 @@
       "dom"
     ],
     "paths": {
-      "ng-pick-datetime": [
+      "@busacca/ng-pick-datetime": [
         "dist/ng-pick-datetime"
       ],
-      "ng-pick-datetime/*": [
+      "@busacca/ng-pick-datetime/*": [
         "dist/ng-pick-datetime/*"
       ]
     }
