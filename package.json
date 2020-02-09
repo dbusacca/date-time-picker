@@ -4,9 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "rimraf ./dist/ng-pick-datetime && ng build && npm run copyassets",
-    "prod": "rimraf ./dist/ng-pick-datetime && ng build --prod && npm run copyassets",
-    "copyassets": "cpx \"./projects/ng-pick-datetime/src/lib/sass/**/*\" \"./dist/ng-pick-datetime/assets/style\"",
+    "build": "rimraf ./dist/ng-pick-datetime && ng build && npx gulp sass",
+    "prod": "rimraf ./dist/ng-pick-datetime && ng build --prod && npx gulp sass",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
