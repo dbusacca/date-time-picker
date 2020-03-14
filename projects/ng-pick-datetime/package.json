@@ -1,11 +1,11 @@
 {
   "name": "@busacca/ng-pick-datetime",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "peerDependencies": {
-    "@angular/common": "~9.0.0",
-    "@angular/core": "~9.0.0",
-    "@angular/forms": "~9.0.0",
-    "@angular/cdk": "~9.0.0",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/forms": "^9.0.0",
+    "@angular/cdk": "^9.0.0",
     "moment": "^2.24.0"
   }
 }
